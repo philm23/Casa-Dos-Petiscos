@@ -114,12 +114,13 @@ body {
 /* Secções gerais */
 
 .section {
-  background: #0d0d0d;
+  padding: 5rem 8vw;
+  background: #0d0d0d; /* fundo escuro */
   color: var(--text-light);
 }
 
 .section.light {
-  background: #111;
+  background: #111; /* cinza escuro */
 }
 
 .container {
@@ -154,28 +155,27 @@ body {
 /* Features */
 
 .feature {
-  background: #ffffff;
+  background: #1a1a1a;
   border-radius: var(--radius);
-  padding: 1.4rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  padding: 1.6rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  text-align: center;
 }
 
-.feature .icon {
-  font-size: 1.6rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
+.feature p {
+  color: #ccc;
 }
+
 
 /* Cards de pratos */
 
 .cards .card {
-  background: #ffffff;
+  background: #1a1a1a;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
 
 .card-image {
   height: 180px;
@@ -221,10 +221,10 @@ body {
 }
 
 .step {
-  background: #ffffff;
+  background: #1a1a1a;
   border-radius: var(--radius);
-  padding: 1.4rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  padding: 1.6rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
 .step-number {
@@ -247,10 +247,10 @@ body {
 }
 
 .gallery-item {
+  background: #222;
+  border: 2px solid #333;
   border-radius: var(--radius);
-  min-height: 140px;
-  background-size: cover;
-  background-position: center;
+  color: #aaa;
 }
 
 .placeholder {
@@ -270,26 +270,16 @@ body {
 
 /* Formulário de reservas */
 
-.reservation-form {
-  margin-top: 2rem;
-  max-width: 600px;
-}
-
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
 .reservation-form input {
-  flex: 1;
-  min-width: 140px;
-  padding: 0.7rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #fff;
 }
+
+.reservation-form input::placeholder {
+  color: #777;
+}
+
 
 .small-note {
   font-size: 0.8rem;
