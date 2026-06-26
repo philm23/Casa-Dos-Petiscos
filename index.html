@@ -43,6 +43,24 @@
   <footer class="footer">
     <p>Casa dos Petiscos – Viseu</p>
   </footer>
+<script>
+window.addEventListener("scroll", () => {
+  const img = document.querySelector(".rotate-on-scroll");
+  const scrollPos = window.scrollY;
+  img.style.transform = `rotate(${scrollPos / 2}deg)`;
+});
+</script>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll(".element").forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
