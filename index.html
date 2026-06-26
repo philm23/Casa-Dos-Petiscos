@@ -51,6 +51,7 @@
 const img = document.querySelector(".rotate-on-scroll");
 const zone = document.querySelector(".scroll-zone");
 const camarao = document.querySelector("#camarao");
+const intro = document.querySelector("#intro");
 
 window.addEventListener("scroll", () => {
   const rect = zone.getBoundingClientRect();
@@ -60,17 +61,16 @@ window.addEventListener("scroll", () => {
   // ROTACAO
   const rotation = progress * 360;
 
-  // ZOOM (1 = tamanho normal, 1.5 = 150%)
+  // ZOOM
   const scale = 1 + progress * 0.5;
 
   img.style.transform = `rotate(${rotation}deg) scale(${scale})`;
 
-  // QUANDO TERMINA A ROTAÇÃO → MOSTRA O CAMARÃO
+  // QUANDO TERMINA A ROTAÇÃO → FADE OUT DO INTRO + MOSTRA O CAMARÃO
   if (progress >= 1) {
-  img.style.opacity = "0";        // desaparece a imagem inicial
-  camarao.classList.add("visible"); // aparece o camarão
-}
-
+    intro.classList.add("fade-out");
+    camarao.classList.add("visible");
+  }
 });
 </script>
 
