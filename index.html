@@ -698,26 +698,25 @@
   <h2>Uma noite<br><em>inesquecível</em></h2>
   <p>Reservas disponíveis de terça a domingo, das 19h30 às 23h00</p>
 
-  <form action="https://formspree.io/f/xdargzze" method="POST" class="reservas-form">
-    
+  <form id="form-reservas" class="reservas-form">
     <div class="form-field">
       <label>Nome</label>
       <input type="text" name="nome" placeholder="O seu nome" required />
     </div>
-
     <div class="form-field">
       <label>Telefone</label>
       <input type="tel" name="telefone" placeholder="+351 9xx xxx xxx" required />
     </div>
-
     <div class="form-field">
       <label>Data</label>
       <input type="date" name="data" required />
     </div>
-
     <div class="form-field">
       <label>Hora</label>
       <select name="hora">
+        <option>18h00</option>
+        <option>18h30</option>
+        <option>19h00</option>
         <option>19h30</option>
         <option>20h00</option>
         <option>20h30</option>
@@ -726,7 +725,6 @@
         <option>22h00</option>
       </select>
     </div>
-
     <div class="form-field">
       <label>Pessoas</label>
       <select name="pessoas">
@@ -737,9 +735,8 @@
         <option>5+ pessoas</option>
       </select>
     </div>
-
     <button type="submit" class="btn-reservar">Reservar</button>
-
+    <p id="form-mensagem" style="display:none; margin-top: 1rem;"></p>
   </form>
 
   <p class="reservas-note">Para grupos acima de 8 pessoas, contacte-nos em <a href="mailto:reservas@terraemar.pt">reservas@terraemar.pt</a></p>
@@ -801,6 +798,33 @@
     document.getElementById(name).classList.add('active');
     event.target.classList.add('active');
   }
+
+  // Reservas
+  const form = document.getElementById('form-reservas');
+  const mensagem = document.getElementById('form-mensagem');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    const resposta = await fetch('https://formspree.io/f/xdargzze', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (resposta.ok) {
+      mensagem.textContent = '✅ Reserva enviada! Entraremos em contacto brevemente.';
+      mensagem.style.color = 'green';
+      form.reset();
+    } else {
+      mensagem.textContent = '❌ Erro ao enviar. Tente novamente ou contacte-nos por email.';
+      mensagem.style.color = 'red';
+    }
+
+    mensagem.style.display = 'block';
+  });
 </script>
 </body>
 </html>
