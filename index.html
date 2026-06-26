@@ -48,32 +48,29 @@
 
   <!-- JAVASCRIPT FINAL -->
   <script>
-    const img = document.querySelector(".rotate-on-scroll");
-    const zone = document.querySelector(".scroll-zone");
-    const camarao = document.querySelector("#camarao");
-    const intro = document.querySelector("#intro");
+const img = document.querySelector(".rotate-on-scroll");
+const zone = document.querySelector(".scroll-zone");
+const intro = document.querySelector("#intro");
+const camaraoImg = document.querySelector("#camarao .element");
 
-    window.addEventListener("scroll", () => {
-      const rect = zone.getBoundingClientRect();
-      const total = zone.offsetHeight - window.innerHeight;
-      const progress = Math.min(Math.max((0 - rect.top) / total, 0), 1);
+window.addEventListener("scroll", () => {
+  const rect = zone.getBoundingClientRect();
+  const total = zone.offsetHeight - window.innerHeight;
+  const progress = Math.min(Math.max((0 - rect.top) / total, 0), 1);
 
-      // ROTACAO
-      const rotation = progress * 360;
+  const rotation = progress * 360;
+  const scale = 1 + progress * 0.5;
 
-      // ZOOM
-      const scale = 1 + progress * 0.5;
+  img.style.transform = `rotate(${rotation}deg) scale(${scale})`;
 
-      img.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+  if (progress >= 1) {
+    intro.classList.add("fade-out");
+    camaraoImg.classList.add("visible", "fixed");
+  }
+});
 
-      // QUANDO TERMINA A ROTAÇÃO → FADE OUT DO INTRO + MOSTRA O CAMARÃO
-      if (progress >= 1) {
-        intro.classList.add("fade-out");
-        camarao.querySelector(".element").classList.add("visible");
-      }
-    });
-    console.log("JS OK");
-  </script>
+console.log("JS OK");
+</script>
 
 </body>
 </html>
