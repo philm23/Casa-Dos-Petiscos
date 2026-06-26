@@ -697,14 +697,27 @@
   <p class="label">Reserve a sua Mesa</p>
   <h2>Uma noite<br><em>inesquecível</em></h2>
   <p>Reservas disponíveis de terça a domingo, das 19h30 às 23h00</p>
-  <div class="reservas-form">
+
+  <form action="https://formspree.io/f/xdargzze" method="POST" class="reservas-form">
+    
+    <div class="form-field">
+      <label>Nome</label>
+      <input type="text" name="nome" placeholder="O seu nome" required />
+    </div>
+
+    <div class="form-field">
+      <label>Telefone</label>
+      <input type="tel" name="telefone" placeholder="+351 9xx xxx xxx" required />
+    </div>
+
     <div class="form-field">
       <label>Data</label>
-      <input type="date" />
+      <input type="date" name="data" required />
     </div>
+
     <div class="form-field">
       <label>Hora</label>
-      <select>
+      <select name="hora">
         <option>19h30</option>
         <option>20h00</option>
         <option>20h30</option>
@@ -713,9 +726,10 @@
         <option>22h00</option>
       </select>
     </div>
+
     <div class="form-field">
       <label>Pessoas</label>
-      <select>
+      <select name="pessoas">
         <option>1 pessoa</option>
         <option>2 pessoas</option>
         <option>3 pessoas</option>
@@ -723,8 +737,11 @@
         <option>5+ pessoas</option>
       </select>
     </div>
-    <button class="btn-reservar">Reservar</button>
-  </div>
+
+    <button type="submit" class="btn-reservar">Reservar</button>
+
+  </form>
+
   <p class="reservas-note">Para grupos acima de 8 pessoas, contacte-nos em <a href="mailto:reservas@terraemar.pt">reservas@terraemar.pt</a></p>
 </section>
 
