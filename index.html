@@ -4,16 +4,19 @@
   <meta charset="UTF-8" />
   <title>Terra e Mar – Casa dos Petiscos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 
 <body>
 
-  <!-- INTRO – Título + Imagem que roda -->
-  <section class="chapter" id="intro">
+  <!-- SECÇÃO FIXA COM ROTAÇÃO -->
+  <section id="intro">
     <h1 class="title">Terra e Mar</h1>
     <img src="img/banner-terra-mar.png" class="rotate-on-scroll">
   </section>
+
+  <!-- ZONA DE SCROLL ARTIFICIAL (controla a rotação) -->
+  <div class="scroll-zone"></div>
 
   <!-- ELEMENTO 1 – Camarão -->
   <section class="chapter" id="camarao">
@@ -33,34 +36,45 @@
     <p class="caption">Carne grelhada no ponto.</p>
   </section>
 
-  <!-- ELEMENTO 4 – Saladas / Fruta / Legumes (opcional) -->
+  <!-- ELEMENTO 4 – Saladas -->
   <section class="chapter" id="saladas">
     <img src="img/saladas.png" class="element">
     <p class="caption">Frescura que completa o prato.</p>
   </section>
 
-  <!-- FOOTER SIMPLES -->
   <footer class="footer">
     <p>Casa dos Petiscos – Viseu</p>
   </footer>
-<script>
-window.addEventListener("scroll", () => {
-  const img = document.querySelector(".rotate-on-scroll");
-  const scrollPos = window.scrollY;
-  img.style.transform = `rotate(${scrollPos / 2}deg)`;
-});
-</script>
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
-  });
-}, { threshold: 0.3 });
 
-document.querySelectorAll(".element").forEach(el => observer.observe(el));
-</script>
+  <!-- JAVASCRIPT FINAL -->
+  <script>
+    const img = document.querySelector(".rotate-on-scroll");
+    const zone = document.querySelector(".scroll-zone");
+    const camarao = document.querySelector("#camarao");
+
+    window.addEventListener("scroll", () => {
+      const rect = zone.getBoundingClientRect();
+      const total = zone.offsetHeight - window.innerHeight;
+      const progress = Math.min(Math.max((0 - rect.top) / total, 0), 1);
+
+      const rotation = progress * 360;
+      img.style.transform = `rotate(${rotation}deg)`;
+
+      if (progress >= 1) {
+        camarao.classList.add("visible");
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll(".element").forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
